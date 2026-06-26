@@ -1,5 +1,3 @@
-import java.util.*;
-
 class DisjointSet {
     private final int[] parent;
 
