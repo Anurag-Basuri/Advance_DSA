@@ -3,41 +3,47 @@
 
 using namespace std;
 
-class DisjointSet{
+// Basic DSU implementation with path compression.
+class DSU {
     vector<int> parent;
 
     public:
-        DisjointSet(int n) {
+        DSU(int n) {
             parent.resize(n);
-            for(int i = 0; i < n; i++) {
+            for(int i = 0; i < n; i++)
                 parent[i] = i;
-            }
         }
 
         int find(int x) {
+            // Compress the path so future lookups are faster.
             if(parent[x] != x) {
                 parent[x] = find(parent[x]);
             }
 
-            return parent[x];
+            return parent[x] = find(parent[x]);
         }
 
         void unite(int x, int y) {
+            // Merge the two components by attaching one root to the other.
             int rootX = find(x);
             int rootY = find(y);
+
+            if(rootX == rootY) return;
 
             if(rootX != rootY) {
                 parent[rootY] = rootX;
             }
         }
 
+        // Check if two nodes are in the same component.
         bool isConnected(int x, int y) {
             return find(x) == find(y);
         }
 };
 
 int main() {
-    DisjointSet ds(10);
+    // Small example showing how DSU groups nodes together.
+    DSU ds(10);
 
     ds.unite(1, 2);
     ds.unite(2, 3);
