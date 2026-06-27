@@ -16,11 +16,10 @@ class DSU {
 
         int find(int x) {
             // Compress the path so future lookups are faster.
-            if(parent[x] != x) {
+            if(parent[x] != x)
                 parent[x] = find(parent[x]);
-            }
 
-            return parent[x] = find(parent[x]);
+            return parent[x];
         }
 
         void unite(int x, int y) {

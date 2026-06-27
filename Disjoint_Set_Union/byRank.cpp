@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 // DSU optimized with union by rank and path compression.
@@ -18,9 +17,8 @@ public:
     // Find the root of the set containing x with path compression.
     int find(int x) {
         // Path compression keeps the tree shallow over time.
-        if (parent[x] == x) {
+        if (parent[x] == x)
             return x;
-        }
 
         return parent[x] = find(parent[x]);
     }
